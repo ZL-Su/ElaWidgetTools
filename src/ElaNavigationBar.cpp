@@ -35,7 +35,7 @@ ElaNavigationBar::ElaNavigationBar(QWidget* parent)
     d->_userCard = new ElaInteractiveCard(this);
     d->_userCard->setCardPixmap(QPixmap(":/include/Image/Cirno.jpg"));
     d->_userCard->setTitle("Ela Tool");
-    d->_userCard->setSubTitle("Liniyous@gmail.com");
+    d->_userCard->setSubTitle("userinfo@deflow.com");
     connect(d->_userCard, &ElaInteractiveCard::clicked, this, &ElaNavigationBar::userInfoCardClicked);
     d->_userButton = new ElaIconButton(QPixmap(":/include/Image/Cirno.jpg"), this);
     d->_userButton->setFixedSize(36, 36);
