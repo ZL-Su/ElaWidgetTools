@@ -6,7 +6,9 @@
 #include "Def.h"
 #include "ElaAppBar.h"
 #include "stdafx.h"
+
 class ElaWindowPrivate;
+class ElaCentralStackedWidget;
 class ELA_EXPORT ElaWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,6 +30,7 @@ public:
 
     void setCustomWidget(ElaAppBarType::CustomArea customArea, QWidget* customWidget);
     QWidget* getCustomWidget() const;
+    ElaCentralStackedWidget* getCentralStackedWidget() const;
     void setIsNavigationBarEnable(bool isEnable);
     bool getIsNavigationBarEnable() const;
     void setUserInfoCardVisible(bool isVisible);

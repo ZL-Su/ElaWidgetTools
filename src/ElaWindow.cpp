@@ -174,6 +174,12 @@ int ElaWindow::getCustomWidgetMaximumWidth() const
     return d->_appBar->getCustomWidgetMaximumWidth();
 }
 
+ElaCentralStackedWidget* ElaWindow::getCentralStackedWidget() const
+{
+    Q_D(const ElaWindow);
+    return d->_centerStackedWidget;
+}
+
 void ElaWindow::setIsCentralStackedWidgetTransparent(bool isTransparent)
 {
     Q_D(ElaWindow);
