@@ -22,6 +22,7 @@ ElaWidget::ElaWidget(QWidget* parent)
     // 自定义AppBar
     d->_appBar = new ElaAppBar(this);
     d->_appBar->setIsStayTop(true);
+    d->_appBar->hide();
     d->_appBar->setWindowButtonFlags(ElaAppBarType::StayTopButtonHint | ElaAppBarType::MinimizeButtonHint | ElaAppBarType::MaximizeButtonHint | ElaAppBarType::CloseButtonHint);
     connect(d->_appBar, &ElaAppBar::routeBackButtonClicked, this, &ElaWidget::routeBackButtonClicked);
     connect(d->_appBar, &ElaAppBar::navigationButtonClicked, this, &ElaWidget::navigationButtonClicked);
@@ -124,6 +125,18 @@ void ElaWidget::setWindowButtonFlags(ElaAppBarType::ButtonFlags buttonFlags)
 ElaAppBarType::ButtonFlags ElaWidget::getWindowButtonFlags() const
 {
     return d_ptr->_appBar->getWindowButtonFlags();
+}
+
+void ElaWidget::hideAppBar()
+{
+    Q_D(ElaWidget);
+    d->_appBar->hide();
+}
+
+void ElaWidget::showAppBar()
+{
+    Q_D(ElaWidget);
+    d->_appBar->show();
 }
 
 void ElaWidget::paintEvent(QPaintEvent* event)

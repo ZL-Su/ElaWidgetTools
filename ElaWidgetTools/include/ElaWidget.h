@@ -23,6 +23,9 @@ public:
     void setWindowButtonFlag(ElaAppBarType::ButtonType buttonFlag, bool isEnable = true);
     void setWindowButtonFlags(ElaAppBarType::ButtonFlags buttonFlags);
     ElaAppBarType::ButtonFlags getWindowButtonFlags() const;
+    void hideAppBar();
+    void showAppBar();
+    
 Q_SIGNALS:
     Q_SIGNAL void routeBackButtonClicked();
     Q_SIGNAL void navigationButtonClicked();
