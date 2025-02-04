@@ -77,11 +77,11 @@ void MainWindow::initWindow()
     // eTheme->setThemeMode(ElaThemeType::Dark);
     // setIsNavigationBarEnable(false);
     // setNavigationBarDisplayMode(ElaNavigationType::Compact);
-    // setWindowButtonFlag(ElaAppBarType::MinimizeButtonHint, false);
+    setWindowButtonFlag(ElaAppBarType::RouteBackButtonHint, false);
     setUserInfoCardPixmap(QPixmap(":/Resource/Image/Cirno.jpg"));
     setUserInfoCardTitle("Ela Tool");
     setUserInfoCardSubTitle("Liniyous@gmail.com");
-    setWindowTitle("ElaWidgetTool");
+    //setWindowTitle("ElaWidgetTool");
     // setIsStayTop(true);
     // setUserInfoCardVisible(false);
 }
@@ -96,38 +96,38 @@ void MainWindow::initEdgeLayout()
     customLayout->setContentsMargins(0, 0, 0, 0);
     customLayout->addWidget(menuBar);
     customLayout->addStretch();
-    // this->setMenuBar(menuBar);
-    this->setCustomWidget(ElaAppBarType::MiddleArea, customWidget);
+    //this->setMenuBar(menuBar);
+    this->setCustomWidget(ElaAppBarType::LeftArea, customWidget);
     this->setCustomWidgetMaximumWidth(500);
 
-    menuBar->addElaIconAction(ElaIconType::AtomSimple, "动作菜单");
-    ElaMenu* iconMenu = menuBar->addMenu(ElaIconType::Aperture, "图标菜单");
+    menuBar->addElaIconAction(ElaIconType::AtomSimple, "Action Menu");
+    ElaMenu* iconMenu = menuBar->addMenu(ElaIconType::Aperture, "Icon Menu");
     iconMenu->setMenuItemHeight(27);
-    iconMenu->addElaIconAction(ElaIconType::BoxCheck, "排序方式", QKeySequence::SelectAll);
-    iconMenu->addElaIconAction(ElaIconType::Copy, "复制");
-    iconMenu->addElaIconAction(ElaIconType::MagnifyingGlassPlus, "显示设置");
+    iconMenu->addElaIconAction(ElaIconType::BoxCheck, "Sort Style", QKeySequence::SelectAll);
+    iconMenu->addElaIconAction(ElaIconType::Copy, "Copy");
+    iconMenu->addElaIconAction(ElaIconType::MagnifyingGlassPlus, "Disply Settings");
     iconMenu->addSeparator();
-    iconMenu->addElaIconAction(ElaIconType::ArrowRotateRight, "刷新");
-    iconMenu->addElaIconAction(ElaIconType::ArrowRotateLeft, "撤销");
+    iconMenu->addElaIconAction(ElaIconType::ArrowRotateRight, "Refresh");
+    iconMenu->addElaIconAction(ElaIconType::ArrowRotateLeft, "Undo");
     menuBar->addSeparator();
-    ElaMenu* shortCutMenu = new ElaMenu("快捷菜单(&A)", this);
+    ElaMenu* shortCutMenu = new ElaMenu("Shortcut(&A)", this);
     shortCutMenu->setMenuItemHeight(27);
-    shortCutMenu->addElaIconAction(ElaIconType::BoxCheck, "排序方式", QKeySequence::Find);
-    shortCutMenu->addElaIconAction(ElaIconType::Copy, "复制");
-    shortCutMenu->addElaIconAction(ElaIconType::MagnifyingGlassPlus, "显示设置");
+    shortCutMenu->addElaIconAction(ElaIconType::BoxCheck, "Sort Style", QKeySequence::Find);
+    shortCutMenu->addElaIconAction(ElaIconType::Copy, "Copy");
+    shortCutMenu->addElaIconAction(ElaIconType::MagnifyingGlassPlus, "Disply Settings");
     shortCutMenu->addSeparator();
-    shortCutMenu->addElaIconAction(ElaIconType::ArrowRotateRight, "刷新");
-    shortCutMenu->addElaIconAction(ElaIconType::ArrowRotateLeft, "撤销");
+    shortCutMenu->addElaIconAction(ElaIconType::ArrowRotateRight, "Refresh");
+    shortCutMenu->addElaIconAction(ElaIconType::ArrowRotateLeft, "Undo");
     menuBar->addMenu(shortCutMenu);
 
-    menuBar->addMenu("样例菜单(&B)")->addElaIconAction(ElaIconType::ArrowRotateRight, "样例选项");
-    menuBar->addMenu("样例菜单(&C)")->addElaIconAction(ElaIconType::ArrowRotateRight, "样例选项");
-    menuBar->addMenu("样例菜单(&E)")->addElaIconAction(ElaIconType::ArrowRotateRight, "样例选项");
-    menuBar->addMenu("样例菜单(&F)")->addElaIconAction(ElaIconType::ArrowRotateRight, "样例选项");
-    menuBar->addMenu("样例菜单(&G)")->addElaIconAction(ElaIconType::ArrowRotateRight, "样例选项");
+    menuBar->addMenu("Demo Menu(&B)")->addElaIconAction(ElaIconType::ArrowRotateRight, "Demo Options");
+    menuBar->addMenu("Demo Menu(&C)")->addElaIconAction(ElaIconType::ArrowRotateRight, "Demo Options");
+    menuBar->addMenu("Demo Menu(&E)")->addElaIconAction(ElaIconType::ArrowRotateRight, "Demo Options");
+    menuBar->addMenu("Demo Menu(&F)")->addElaIconAction(ElaIconType::ArrowRotateRight, "Demo Options");
+    menuBar->addMenu("Demo Menu(&G)")->addElaIconAction(ElaIconType::ArrowRotateRight, "Demo Options");
 
     //工具栏
-    ElaToolBar* toolBar = new ElaToolBar("工具栏", this);
+    ElaToolBar* toolBar = new ElaToolBar("Toolbar", this);
     toolBar->setAllowedAreas(Qt::TopToolBarArea | Qt::BottomToolBarArea);
     toolBar->setToolBarSpacing(3);
     toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -185,19 +185,19 @@ void MainWindow::initEdgeLayout()
     this->addToolBar(Qt::TopToolBarArea, toolBar);
 
     //停靠窗口
-    ElaDockWidget* logDockWidget = new ElaDockWidget("日志信息", this);
+    ElaDockWidget* logDockWidget = new ElaDockWidget("Log Info", this);
     logDockWidget->setWidget(new T_LogWidget(this));
     this->addDockWidget(Qt::RightDockWidgetArea, logDockWidget);
     resizeDocks({logDockWidget}, {200}, Qt::Horizontal);
 
-    ElaDockWidget* updateDockWidget = new ElaDockWidget("更新内容", this);
+    ElaDockWidget* updateDockWidget = new ElaDockWidget("Update", this);
     updateDockWidget->setWidget(new T_UpdateWidget(this));
     this->addDockWidget(Qt::RightDockWidgetArea, updateDockWidget);
     resizeDocks({updateDockWidget}, {200}, Qt::Horizontal);
 
     //状态栏
     ElaStatusBar* statusBar = new ElaStatusBar(this);
-    ElaText* statusText = new ElaText("初始化成功！", this);
+    ElaText* statusText = new ElaText("Initialized！", this);
     statusText->setTextPixelSize(14);
     statusBar->addWidget(statusText);
     this->setStatusBar(statusBar);

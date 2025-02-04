@@ -9,7 +9,7 @@
 T_About::T_About(QWidget* parent)
     : ElaWidget(parent)
 {
-    setWindowTitle("关于..");
+    setWindowTitle("About...");
     setWindowIcon(QIcon(":/include/Image/Moon.jpg"));
     this->setIsFixedSize(true);
     setWindowModality(Qt::ApplicationModal);
@@ -23,27 +23,27 @@ T_About::T_About(QWidget* parent)
     pixCardLayout->addWidget(pixCard);
     pixCardLayout->addStretch();
 
-    ElaText* versionText = new ElaText("ElaWidgetTools-LK-2024", this);
+    ElaText* versionText = new ElaText("ElaWidgetTools-LK-2025", this);
     QFont versionTextFont = versionText->font();
     versionTextFont.setWeight(QFont::Bold);
     versionText->setFont(versionTextFont);
     versionText->setWordWrap(false);
     versionText->setTextPixelSize(18);
 
-    ElaText* licenseText = new ElaText("MIT授权协议", this);
+    ElaText* licenseText = new ElaText("MIT License", this);
     licenseText->setWordWrap(false);
     licenseText->setTextPixelSize(14);
-    ElaText* supportText = new ElaText("Windows支持版本: QT5.12以上\nLinux支持版本: Qt5.14以上", this);
+    ElaText* supportText = new ElaText("Windows: QT5.12 and above\nLinux: Qt5.14 and above", this);
     supportText->setWordWrap(false);
     supportText->setTextPixelSize(14);
-    ElaText* contactText = new ElaText("作者: 8009963@qq.com\n交流群: 850243692(QQ)", this);
+    ElaText* contactText = new ElaText("Author: 8009963@qq.com\nGroup: 850243692(QQ)", this);
     contactText->setWordWrap(false);
     contactText->setTextInteractionFlags(Qt::TextSelectableByMouse);
     contactText->setTextPixelSize(14);
-    ElaText* helperText = new ElaText("用户手册及API文档付费提供\n提供额外的专业技术支持", this);
+    ElaText* helperText = new ElaText("User Manual and API Documents are available for a fee.\nProvide additional technique support.", this);
     helperText->setWordWrap(false);
     helperText->setTextPixelSize(14);
-    ElaText* copyrightText = new ElaText("版权所有 © 2024 Liniyous", this);
+    ElaText* copyrightText = new ElaText("Copyright© 2024 Liniyous", this);
     copyrightText->setWordWrap(false);
     copyrightText->setTextPixelSize(14);
 
