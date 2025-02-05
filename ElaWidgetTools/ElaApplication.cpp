@@ -60,12 +60,17 @@ QString ElaApplication::getMicaImagePath() const
 
 void ElaApplication::init()
 {
+    init("Microsoft YaHei", 13);
+}
+
+void ElaApplication::init(const QString& fontfamily, int fontsize)
+{
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     QFontDatabase::addApplicationFont(":/include/Font/ElaAwesome.ttf");
     //默认字体
     QFont font = qApp->font();
-    font.setPixelSize(13);
-    font.setFamily("Microsoft YaHei");
+    font.setPixelSize(fontsize);
+    font.setFamily(fontfamily);
     font.setHintingPreference(QFont::PreferNoHinting);
     qApp->setFont(font);
 }

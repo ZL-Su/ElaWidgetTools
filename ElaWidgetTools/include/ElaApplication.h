@@ -20,7 +20,14 @@ private:
     ~ElaApplication();
 
 public:
+    /**
+     * App initialization: Set application font to 13pt Microsoft YaHei.
+     */
     void init();
+    /**
+     * App initialization with user defined font family and size.
+     */
+    void init(const QString& fontfamily, int fontsize);
     void syncMica(QWidget* widget, bool isSync = true);
     static bool containsCursorToItem(QWidget* item);
 };
