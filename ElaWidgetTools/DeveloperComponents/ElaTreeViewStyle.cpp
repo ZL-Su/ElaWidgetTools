@@ -8,8 +8,8 @@
 #include "ElaTheme.h"
 ElaTreeViewStyle::ElaTreeViewStyle(QStyle* style)
 {
-    _pItemHeight = 35;
-    _pHeaderMargin = 5;
+    _pItemHeight = 25;
+    _pHeaderMargin = 3;
     _themeMode = eTheme->getThemeMode();
     connect(eTheme, &ElaTheme::themeModeChanged, this, [=](ElaThemeType::ThemeMode themeMode) { _themeMode = themeMode; });
 }
@@ -61,7 +61,7 @@ void ElaTreeViewStyle::drawPrimitive(PrimitiveElement element, const QStyleOptio
     case QStyle::PE_IndicatorBranch:
     {
         // 展开图标绘制
-        if (const QStyleOptionViewItem* vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
+        if (auto vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
         {
             if (vopt->state.testFlag(QStyle::State_Children))
             {
@@ -69,7 +69,7 @@ void ElaTreeViewStyle::drawPrimitive(PrimitiveElement element, const QStyleOptio
                 QRect indicatorRect = option->rect;
                 indicatorRect.adjust(0, 0, -2, 0);
                 QFont iconFont = QFont("ElaAwesome");
-                iconFont.setPixelSize(17);
+                iconFont.setPixelSize(15);
                 painter->setFont(iconFont);
                 painter->setPen(ElaThemeColor(_themeMode, BasicText));
                 painter->drawText(indicatorRect, Qt::AlignVCenter | Qt::AlignRight, vopt->state.testFlag(QStyle::State_Open) ? QChar((unsigned short)ElaIconType::AngleDown) : QChar((unsigned short)ElaIconType::AngleRight));
@@ -118,7 +118,7 @@ void ElaTreeViewStyle::drawControl(ControlElement element, const QStyleOption* o
     case QStyle::CE_HeaderLabel:
     {
         // 表头文字绘制
-        if (const QStyleOptionHeader* hopt = qstyleoption_cast<const QStyleOptionHeader*>(option))
+        if (auto hopt = qstyleoption_cast<const QStyleOptionHeader*>(option))
         {
             QRect headerRect = option->rect;
             painter->save();
@@ -145,7 +145,7 @@ void ElaTreeViewStyle::drawControl(ControlElement element, const QStyleOption* o
     }
     case QStyle::CE_ItemViewItem:
     {
-        if (const QStyleOptionViewItem* vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
+        if (auto vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
         {
             // 背景绘制
             this->drawPrimitive(QStyle::PE_PanelItemViewItem, option, painter, widget);
@@ -263,7 +263,7 @@ QRect ElaTreeViewStyle::subElementRect(SubElement element, const QStyleOption* o
     {
     case QStyle::SE_ItemViewItemCheckIndicator:
     {
-        if (const QStyleOptionViewItem* vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
+        if (auto vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
         {
             if (vopt->viewItemPosition != QStyleOptionViewItem::Middle && vopt->viewItemPosition != QStyleOptionViewItem::End)
             {
@@ -276,7 +276,7 @@ QRect ElaTreeViewStyle::subElementRect(SubElement element, const QStyleOption* o
     }
     case QStyle::SE_ItemViewItemDecoration:
     {
-        if (const QStyleOptionViewItem* vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
+        if (auto vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
         {
             if (vopt->viewItemPosition != QStyleOptionViewItem::Middle && vopt->viewItemPosition != QStyleOptionViewItem::End)
             {
@@ -289,7 +289,7 @@ QRect ElaTreeViewStyle::subElementRect(SubElement element, const QStyleOption* o
     }
     case QStyle::SE_ItemViewItemText:
     {
-        if (const QStyleOptionViewItem* vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
+        if (auto vopt = qstyleoption_cast<const QStyleOptionViewItem*>(option))
         {
             if (vopt->viewItemPosition != QStyleOptionViewItem::Middle && vopt->viewItemPosition != QStyleOptionViewItem::End)
             {
