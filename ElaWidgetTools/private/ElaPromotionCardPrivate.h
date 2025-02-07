@@ -37,7 +37,7 @@ public:
     ~ElaPromotionCardPrivate();
 
 private:
-    int _shadowBorderWidth{6};
+    int _shadowBorderWidth{4};
     QRadialGradient* _hoverGradient{nullptr};
     QRadialGradient* _pressGradient{nullptr};
     bool _isPressAnimationFinished{true};
