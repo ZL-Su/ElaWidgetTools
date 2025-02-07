@@ -20,7 +20,7 @@ public:
     explicit ElaPromotionViewPrivate(QObject* parent = nullptr);
     ~ElaPromotionViewPrivate();
     void onPromotionCardClicked(ElaPromotionCard* clickedCard);
-
+    void setLeftPadding(size_t value = 80) noexcept;
 private:
     ElaThemeType::ThemeMode _themeMode;
     QTimer* _autoScrollTimer{nullptr};

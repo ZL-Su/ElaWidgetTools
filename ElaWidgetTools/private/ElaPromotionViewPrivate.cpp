@@ -96,6 +96,11 @@ void ElaPromotionViewPrivate::onPromotionCardClicked(ElaPromotionCard* clickedCa
     Q_EMIT q->pCurrentIndexChanged();
 }
 
+void ElaPromotionViewPrivate::setLeftPadding(size_t value) noexcept
+{
+    _leftPadding = value;
+}
+
 void ElaPromotionViewPrivate::_startCardGeometryAnimation(ElaPromotionCard* card, QRect start, QRect end)
 {
     QPropertyAnimation* geometryAnimation = new QPropertyAnimation(card, "geometry");
