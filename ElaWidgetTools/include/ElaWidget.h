@@ -25,6 +25,9 @@ public:
     ElaAppBarType::ButtonFlags getWindowButtonFlags() const;
     void hideAppBar();
     void showAppBar();
+
+    // Get pointer to the built-in app bar
+    ElaAppBar* appBar() noexcept;
     
 Q_SIGNALS:
     Q_SIGNAL void routeBackButtonClicked();
