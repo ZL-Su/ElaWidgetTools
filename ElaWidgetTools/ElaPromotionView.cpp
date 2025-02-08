@@ -37,6 +37,18 @@ ElaPromotionView::~ElaPromotionView()
 {
 }
 
+size_t ElaPromotionView::leftPadding() noexcept
+{
+    Q_D(ElaPromotionView);
+    return d->_leftPadding;
+}
+
+void ElaPromotionView::setLeftPadding(size_t value) noexcept
+{
+    Q_D(ElaPromotionView);
+    d->_leftPadding = value;
+}
+
 void ElaPromotionView::setCardExpandWidth(int width)
 {
     Q_D(ElaPromotionView);
@@ -142,6 +154,15 @@ void ElaPromotionView::appendPromotionCard(ElaPromotionCard* card)
     d->_updatePromotionCardGeometry();
 }
 
+ElaPromotionCard* ElaPromotionView::getPromotionCard(int index) noexcept
+{
+    Q_D(ElaPromotionView);
+    if (index < d->_promotionCardList.size()) {
+        return d->_promotionCardList.at(index);
+    }
+    else return nullptr;
+}
+
 void ElaPromotionView::wheelEvent(QWheelEvent* event)
 {
     Q_D(ElaPromotionView);
@@ -178,9 +199,11 @@ void ElaPromotionView::paintEvent(QPaintEvent* event)
     painter.setPen(Qt::NoPen);
     painter.setBrush(ElaThemeColor(d->_themeMode, BasicIndicator));
     //页标指示器绘制
-    int promotionCardCount = d->_promotionCardList.count();
-    bool isCountOdd = promotionCardCount % 2;
-    QPoint startPoint = isCountOdd ? QPoint(width() / 2 - promotionCardCount / 2 * d->_indicatorSpacing, height() - d->_bottomMargin / 2) : QPoint(width() / 2 - promotionCardCount / 2 * d->_indicatorSpacing - d->_indicatorSpacing / 2, height() - d->_bottomMargin / 2);
+    const int promotionCardCount = d->_promotionCardList.count();
+    const bool isCountOdd = promotionCardCount % 2;
+    const auto base_x = width() / 2 - promotionCardCount / 2 * d->_indicatorSpacing;
+    const auto base_y = height() - d->_bottomMargin/1.5f;
+    QPoint startPoint = isCountOdd ? QPoint(base_x, base_y) : QPoint(base_x - d->_indicatorSpacing / 2, base_y);
     for (int i = 0; i < promotionCardCount; i++)
     {
         if (i == d->_pCurrentIndex)

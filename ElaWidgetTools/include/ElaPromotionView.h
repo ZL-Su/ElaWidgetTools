@@ -20,8 +20,10 @@ public:
     explicit ElaPromotionView(QWidget* parent = nullptr);
     ~ElaPromotionView();
 
+    [[nodiscard]]size_t leftPadding() noexcept;
+    void setLeftPadding(size_t value) noexcept;
     void appendPromotionCard(ElaPromotionCard* card);
-
+    ElaPromotionCard* getPromotionCard(int index) noexcept;
 protected:
     virtual void wheelEvent(QWheelEvent* event) override;
     virtual void paintEvent(QPaintEvent* event) override;
