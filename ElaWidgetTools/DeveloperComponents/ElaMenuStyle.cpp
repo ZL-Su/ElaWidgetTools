@@ -9,7 +9,7 @@
 #include "ElaTheme.h"
 ElaMenuStyle::ElaMenuStyle(QStyle* style)
 {
-    _pMenuItemHeight = 32;
+    _pMenuItemHeight = 30;
     _themeMode = eTheme->getThemeMode();
     connect(eTheme, &ElaTheme::themeModeChanged, this, [=](ElaThemeType::ThemeMode themeMode) {
         _themeMode = themeMode;
@@ -29,12 +29,12 @@ void ElaMenuStyle::drawPrimitive(PrimitiveElement element, const QStyleOption* o
         // 高性能阴影
         painter->save();
         painter->setRenderHint(QPainter::Antialiasing);
-        eTheme->drawEffectShadow(painter, option->rect, _shadowBorderWidth, 6);
+        eTheme->drawEffectShadow(painter, option->rect, _shadowBorderWidth, 3);
         // 背景绘制
         QRect foregroundRect(_shadowBorderWidth, _shadowBorderWidth, option->rect.width() - 2 * _shadowBorderWidth, option->rect.height() - 2 * _shadowBorderWidth);
         painter->setPen(ElaThemeColor(_themeMode, PopupBorder));
         painter->setBrush(ElaThemeColor(_themeMode, PopupBase));
-        painter->drawRoundedRect(foregroundRect, 6, 6);
+        painter->drawRoundedRect(foregroundRect, 3, 3);
         painter->restore();
         return;
     }

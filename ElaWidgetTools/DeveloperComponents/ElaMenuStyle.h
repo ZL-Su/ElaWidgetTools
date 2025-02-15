@@ -22,7 +22,7 @@ private:
     mutable bool _isAnyoneItemHasIcon{false};
     int _shadowBorderWidth{6};
     ElaThemeType::ThemeMode _themeMode;
-    int _iconWidth{22};
+    int _iconWidth{15};
 };
 
 #endif // ELAMENUSTYLE_H
