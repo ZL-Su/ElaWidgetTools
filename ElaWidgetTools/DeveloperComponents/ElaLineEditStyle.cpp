@@ -47,7 +47,7 @@ void ElaLineEditStyle::drawPrimitive(PrimitiveElement element, const QStyleOptio
             painter->drawRoundedRect(QRectF(lineEditRect.x() + 1.5, lineEditRect.y() + 1.5, lineEditRect.width() - 3, lineEditRect.height() - 3), 6, 6);
 
             // 底边线绘制
-            painter->setBrush(ElaThemeColor(_themeMode, BasicHemline));
+            painter->setBrush(ElaThemeColor(_themeMode, BasicBorder));
             QPainterPath path;
             path.moveTo(6, lineEditRect.height());
             path.lineTo(lineEditRect.width() - 6, lineEditRect.height());
