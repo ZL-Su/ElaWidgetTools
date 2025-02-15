@@ -17,7 +17,10 @@ ElaPromotionView::ElaPromotionView(QWidget* parent)
     d->_pCardCollapseWidth = 300;
     d->_pIsAutoScroll = false;
     d->_pAutoScrollInterval = 5000;
-    setFixedHeight(300);
+   
+    updateLeftPadding();
+
+    setFixedHeight(parent?parent->height()/2.1:300);
     setObjectName("ElaPromotionView");
     setStyleSheet("#ElaPromotionView{background-color:transparent;}");
 
@@ -43,10 +46,13 @@ size_t ElaPromotionView::leftPadding() noexcept
     return d->_leftPadding;
 }
 
-void ElaPromotionView::setLeftPadding(size_t value) noexcept
+void ElaPromotionView::updateLeftPadding(int value) noexcept
 {
     Q_D(ElaPromotionView);
-    d->_leftPadding = value;
+    if (value < 0)
+        d->_leftPadding = (width() - d->_cardSpacing * 2 - d->_pCardExpandWidth) >> 1;
+    else
+        d->_leftPadding = value;
 }
 
 void ElaPromotionView::setCardExpandWidth(int width)
@@ -193,12 +199,16 @@ void ElaPromotionView::wheelEvent(QWheelEvent* event)
 void ElaPromotionView::paintEvent(QPaintEvent* event)
 {
     Q_D(ElaPromotionView);
+
+    //Let the card expand width does not exceed the view width
+    d->_pCardExpandWidth = std::min(d->_pCardExpandWidth, width());
+    
+    //Draw the page indicators
     QPainter painter(this);
     painter.save();
     painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(ElaThemeColor(d->_themeMode, BasicIndicator));
-    //页标指示器绘制
     const int promotionCardCount = d->_promotionCardList.count();
     const bool isCountOdd = promotionCardCount % 2;
     const auto base_x = width() / 2 - promotionCardCount / 2 * d->_indicatorSpacing;

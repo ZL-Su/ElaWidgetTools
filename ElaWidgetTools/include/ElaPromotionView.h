@@ -21,7 +21,7 @@ public:
     ~ElaPromotionView();
 
     [[nodiscard]]size_t leftPadding() noexcept;
-    void setLeftPadding(size_t value) noexcept;
+    void updateLeftPadding(int value=-1) noexcept;
     void appendPromotionCard(ElaPromotionCard* card);
     ElaPromotionCard* getPromotionCard(int index) noexcept;
 protected:
