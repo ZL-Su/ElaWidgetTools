@@ -65,6 +65,7 @@ void ElaApplication::init()
 
 void ElaApplication::init(const QString& fontfamily, int fontsize)
 {
+    Q_INIT_RESOURCE(ElaWidgetTools);
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     QFontDatabase::addApplicationFont(":/include/Font/ElaAwesome.ttf");
     //默认字体
