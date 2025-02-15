@@ -31,7 +31,7 @@ ElaSuggestBox::ElaSuggestBox(QWidget* parent)
     d->_pBorderRadius = 6;
     d->_pCaseSensitivity = Qt::CaseInsensitive;
     d->_searchEdit = new ElaLineEdit(this);
-    d->_searchEdit->setFixedHeight(35);
+    //d->_searchEdit->setFixedHeight(35);
     d->_searchEdit->setPlaceholderText(tr("Find..."));
     d->_searchEdit->setClearButtonEnabled(true);
     d->_lightSearchAction = new QAction(ElaIcon::getInstance()->getElaIcon(ElaIconType::MagnifyingGlass), "Search", this);
@@ -57,7 +57,7 @@ ElaSuggestBox::ElaSuggestBox(QWidget* parent)
     });
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(0);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setContentsMargins(0, 3, 0, 0);
     mainLayout->addWidget(d->_searchEdit);
     d->_searchViewBaseWidget = new ElaSuggestBoxSearchViewContainer(window());
     d->_shadowLayout = new QVBoxLayout(d->_searchViewBaseWidget);
