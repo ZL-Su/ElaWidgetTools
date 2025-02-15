@@ -62,6 +62,8 @@ void ElaSuggestBoxPrivate::onSearchEditTextEdit(const QString& searchText)
         {
             rowCount = 4;
         }
+        const auto h = 25;//40
+        const auto s = 10;//16
         if (!_searchViewBaseWidget->isVisible())
         {
             q->raise();
@@ -72,12 +74,12 @@ void ElaSuggestBoxPrivate::onSearchEditTextEdit(const QString& searchText)
             {
                 _searchViewBaseWidget->move(cyclePoint);
             }
-            _startSizeAnimation(QSize(q->width() + 10, 0), QSize(q->width() + 10, 40 * rowCount + 16));
-            _searchView->move(_searchView->x(), -(40 * rowCount + 16));
+            _startSizeAnimation(QSize(q->width() + 10, 0), QSize(q->width() + 10, h* rowCount + s));
+            _searchView->move(_searchView->x(), -(h* rowCount + s));
         }
         else
         {
-            _startSizeAnimation(_searchViewBaseWidget->size(), QSize(q->width() + 12, 40 * rowCount + 16));
+            _startSizeAnimation(_searchViewBaseWidget->size(), QSize(q->width() + 12, h* rowCount + s));
         }
         _startExpandAnimation();
     }
